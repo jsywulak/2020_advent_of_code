@@ -21,7 +21,6 @@ file_data.each do |line|
 	letter = tuple[1].split(':')[0]
 	password = tuple[2]
 
-
 	if (password[pos1] == letter || password[pos2] == letter) 
 		if (password[pos1] != password[pos2])
 			num_valid += 1

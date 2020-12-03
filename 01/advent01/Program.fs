@@ -7,11 +7,14 @@ let readLines (filePath:string) = seq {
         yield sr.ReadLine ()
 }
 
-
+let asInt : string -> int = int
 
 [<EntryPoint>]
 let main argv =
     let lines = readLines "../input.txt"
-    let diffs = lines.map (fun x -> 2020 - x)
-    //printfn "%A" diffs
+    let diffs = 
+        lines
+        |> Seq.map (fun x -> 2020 - asInt x)
+
+    printfn "%A" diffs
     0 // return an integer exit code
