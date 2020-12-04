@@ -1,19 +1,18 @@
+# frozen_string_literal: true
+
 def check_slope(landscape, slope_right, slope_down)
-	trees = 0
-	pos = 0
-	landscape.each_with_index do |line, index|
-		if index % slope_down == 0
-			if line[pos] == '#'
-				trees += 1
-			end
-			pos = (pos + slope_right) % line.length
-		end
-	end
-	return trees
+  trees = 0
+  pos = 0
+  landscape.each_with_index do |line, index|
+    next unless (index % slope_down).zero?
+
+    trees += 1 if line[pos] == '#'
+    pos = (pos + slope_right) % line.length
+  end
+  trees
 end
 
-
-file = File.open("input.txt")
+file = File.open('input.txt')
 file_data = file.readlines.map(&:chomp)
 file.close
 
