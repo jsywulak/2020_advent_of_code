@@ -12,25 +12,27 @@ def is_valid_passport? passport
 	return result
 end
 
-
 def is_valid_birth_year? passport
 	result = true
 	result = false if passport['byr'].to_i < 1920
 	result = false if passport['byr'].to_i > 2002
 	return result
 end
+
 def is_valid_issue_year? passport
 	result = true
 	result = false if passport['iyr'].to_i < 2010
 	result = false if passport['iyr'].to_i > 2020
 	return result
 end
+
 def is_valid_expir_year? passport
 	result = true
 	result = false if passport['eyr'].to_i < 2020
 	result = false if passport['eyr'].to_i > 2030
 	return result
 end
+
 def is_valid_height? passport
 	result = true
 	if passport['hgt'].include? "cm"
@@ -46,6 +48,7 @@ def is_valid_height? passport
 	end
 	return result
 end
+
 def is_valid_hair_color? passport
 	result = true
 	result = false if passport['hcl'][0] != '#'
@@ -54,7 +57,6 @@ def is_valid_hair_color? passport
 	return result
 end
 
-
 def is_valid_eye_color? passport
 	%w(amb blu brn gry grn hzl oth).include?(passport['ecl'])
 end
@@ -62,7 +64,6 @@ end
 def is_valid_passport_id? passport
 	return passport['pid'].length == 9
 end
-
 
 def parse_raw_passport_data data
 	raw_passports = []
@@ -118,14 +119,11 @@ end
 
 
 file_data = get_input_data
-
 raw_passports = parse_raw_passport_data file_data
 passports = parse_passport_data raw_passports
 valid_passports = parse_correct_number_of_fields passports
 really_valid_passports = parse_valid_data_in_fields valid_passports
 
 puts "total passports: #{passports.length}"
-puts "number valid: #{valid_passports.length}"
-puts "number valid: #{really_valid_passports.length}"
-
-
+puts "number with correct number of fields: #{valid_passports.length}"
+puts "number with correct data in fields: #{really_valid_passports.length}"
