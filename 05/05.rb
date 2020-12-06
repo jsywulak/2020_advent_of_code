@@ -25,11 +25,13 @@ end
 file_data = read_input_data
 seat_ids = []
 
+# despite the convuluted description, the input is just the binary representation of the seat id.
+# so just need to convert and add to a list, then ask for the max.
 file_data.each do |line|
   seat_ids << parse_seat_data(line)
 end
 
-# puts "lowest seat id: #{seat_ids.min}"
+puts "lowest seat id: #{seat_ids.min}"
 puts "highest seat id: #{seat_ids.max}"
 
 result = nil
