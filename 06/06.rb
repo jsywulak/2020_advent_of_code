@@ -1,3 +1,5 @@
+require 'set'
+
 def read_input_data
   file = File.open('input.txt')
   file_data = file.readlines.map(&:chomp)
@@ -20,8 +22,14 @@ end
 
 total = 0
 groups.each do |group|
-	group_answers = group.join.chars.sort.to_a.uniq
+	group_answers = Set.new(group.join.chars)
 	total += group_answers.length
 end
-puts "total: #{total}"
+puts "total for anyone answering yes: #{total}"
 
+total = 0
+groups.each do |group|
+	group_answers = group.join.chars.sort.join.scan(/(.)\1{#{group.length - 1},}/)
+	total += group_answers.length
+end
+puts "total for everyone answering yes: #{total}"
