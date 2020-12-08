@@ -50,8 +50,8 @@ end
 data = read_input_data
 groups = parse_customs_data data
 
-total = total_anyone_yes groups
-puts "total for anyone answering yes: #{total}"
+totala = total_anyone_yes groups
+puts "total for anyone answering yes: #{totala}"
 
-total = total_everyone_yes groups
-puts "total for everyone answering yes: #{total}"
+totale = total_everyone_yes groups
+puts "total for everyone answering yes: #{totale}"
